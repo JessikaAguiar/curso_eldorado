@@ -1,0 +1,12 @@
+{
+  "name": "praticando_mysql_30_04_22",
+  "version": "1.0.0",
+  "description": "praticando com mysql",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jéssika Aguiar",
+  "license": "ISC"
+}
