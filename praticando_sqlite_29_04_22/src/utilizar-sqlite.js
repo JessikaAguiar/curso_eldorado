@@ -1,5 +1,12 @@
 const sqlite = require('sqlite3')
 
+const fs = require('fs');
+const PASTA_DATABASE = './src/database';
+
+if (!fs.existsSync(PASTA_DATABASE)) {
+    fs.mkdirSync(PASTA_DATABASE)
+}
+
 function tratarErro(error) {
     if(error !== null) {
         console.error('Ocorreu um erro ao criar o banco de dados - ', error.message)
@@ -24,12 +31,25 @@ bancoDeDados.run(`
         carro_marca,
         carro_ano,
         carro_cor
-    ) VALUES (
-        'Classic',
-        'Chevrolet',
-         2012,
-        'Cinza'
-    )`, tratarErro)
+    ) VALUES 
+        ($modelo, $marca, $ano, $cor)`,
+    {
+        $modelo: 'Corsa Classic',
+        $marca: 'Chevrolet',
+        $ano: 2015,
+        $cor: 'Cinza'
+    }
+    , tratarErro)
+
+let stmt = bancoDeDados.prepare(
+    "INSERT INTO carros (carro_modelo, carro_marca, carro_ano, carro_cor) VALUES (?,?,?,?)",
+    tratarErro
+)
+
+for(let index = 0; index > 10 ; index ++) {
+    stmt.run('Fusca', 'Wolks', 2011, 'Branco')
+}
+stmt.finalize()
 
 bancoDeDados.all(`
     SELECT * FROM carros
@@ -57,3 +77,12 @@ bancoDeDados.run(`
     DELETE FROM carros WHERE carro_id = 1
 `, tratarErro)
 
+bancoDeDados.serialize(() => {
+    //inserir comandos sql em sequência
+})
+
+bancoDeDados.parallelize(() => {
+//inserir comandos sql em paralelo
+})
+
+bancoDeDados.close()
