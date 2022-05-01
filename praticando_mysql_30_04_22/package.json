@@ -1,5 +1,5 @@
 {
-  "name": "praticando_mysql_30_04_22",
+  "name": "praticando_mysql",
   "version": "1.0.0",
   "description": "praticando com mysql",
   "main": "index.js",
@@ -8,5 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jéssika Aguiar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mysql2": "^2.3.3"
+  }
 }
