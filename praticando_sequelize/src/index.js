@@ -1,32 +1,21 @@
-const Carro = require('./carro')
-const Usuario = require('./usuario')
-
-const database = require('./database')
+const Carro = require('./database/models/carro')
+const Usuario = require('./database/models/usuario')
+const Marca = require('./database/models/Marca')
+const MarcaRepository = require('./repositories/MarcaRepository')
+const db = require('./database/database')
 
 async function main() {
-    database.sync()
-    
-    // const { carro_id } = await Carro.create({
-    //     carro_modelo: 'Fusca',
-    //     carro_marca: 'Chevrolet',
-    //     carro_ano: 2012,
-    //     carro_cor: 'Amarelo'
+    const marcaRepository = new MarcaRepository()
+    // await marcaRepository.salvar({nome: 'Fiat'})
+
+    const marcas = await Marca.findAll({ include: [ { model: Carro }]})
+    console.log(marcas)
+    // const carro = Carro.create({
+    //     modelo: 'Fusca',
+    //     marca_id: 1,
+    //     ano: 2012,
+    //     cor: 'Amarelo'
     // })
-
-    // console.log(carro_id)
-    // const carros = await Carro.findAll()
-    // const carro = carros[0]
-    // carro.carro_modelo = 'Meriva'
-    // await carro.save()
-
-    // await carro.destroy()
-
-    // await carro.destroy({
-    //     where: {
-    //         carro_ano: 2012
-    //     }
-    // })
-
 }
 
 main()
