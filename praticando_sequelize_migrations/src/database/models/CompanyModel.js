@@ -12,6 +12,8 @@ const CompanyModel = database.define('companies', {
         type: Sequelize.STRING(100),
         allowNull: false,
     }
+},  {
+    timestamps: false
 })
 
 module.exports = CompanyModel

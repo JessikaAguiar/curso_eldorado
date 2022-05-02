@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize')
 const database = require('../index')
 const ComponyModel = require('./CompanyModel')
 
-const CarModel = database.define('carros', {
+const CarModel = database.define('cars', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -17,14 +17,16 @@ const CarModel = database.define('carros', {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    ano: {
+    year: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    cor: {
+    color: {
         type: Sequelize.STRING(100),
         allowNull: false
     }
+}, {
+    timestamps: false
 })
 
 CarModel.belongsTo(ComponyModel, {
