@@ -1,17 +1,17 @@
-const Company = require('../database/models/Compony')
+const CarModel = require('../database/models/CarModel')
 
-class CompanyRepository {
-    async add(company) {
+class CarRepository {
+    async add(car) {
         try {
-            return await Company.create(company)
+            return await CarModel.create(car)
         } catch (error) {
             console.log('Erro ao Salvar Company - ', error)
         }
     }
 
-    async selecionarTodos() {
+    async selectAll() {
         try {
-            return await Company.findAll()
+            return await CarModel.findAll()
         } catch (error) {
             console.log('Erro ao listar Marcas - ', error)
         }
@@ -19,7 +19,7 @@ class CompanyRepository {
 
     async selectByFilter(filter) {
         try {
-            return await Company.findAll({
+            return await CarModel.findAll({
                 where: filter
             })
         } catch (error) {
@@ -27,9 +27,9 @@ class CompanyRepository {
         }
     }
 
-    async update(company) {
+    async update(car) {
         try {
-            return await Company.save()
+            return await CarModel.save()
         } catch (error) {
             console.log('Erro ao Editar Marca - ', error)
         }
@@ -37,7 +37,7 @@ class CompanyRepository {
 
     async remove(id) {
         try {
-            return await Company.destroy({
+            return await CarModel.destroy({
                 where: { id }
             })
         } catch (error) {
@@ -46,4 +46,4 @@ class CompanyRepository {
     }
 }
 
-module.exports = CompanyRepository
+module.exports = CarRepository

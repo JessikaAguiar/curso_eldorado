@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize')
 const database = require('../index')
 
-const ComponyModel = database.define('companies', {
+const CompanyModel = database.define('companies', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,

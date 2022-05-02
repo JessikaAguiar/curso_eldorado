@@ -27,11 +27,11 @@ const CarModel = database.define('carros', {
     }
 })
 
-Carro.belongsTo(ComponyModel, {
-    foreignKey: 'compony_id'
+CarModel.belongsTo(ComponyModel, {
+    foreignKey: 'company_id'
 })
 
-Marca.hasMany(CarModel, {
-    foreignKey: 'compony_id'
+CarModel.hasMany(CarModel, {
+    foreignKey: 'company_id'
 })
 module.exports = CarModel

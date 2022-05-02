@@ -1,0 +1,4 @@
+npx sequelize-cli db:create [-> criar banco]
+npx sequelize-cli migration:generate --name nomedamigracao [-> criando uma migrate]
+npx sequelize-cli db:migrate [-> executando as migrações ]
+npx sequelize-cli db:migrate:undo [-> desfaz/reverte as migrações ]
